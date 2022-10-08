@@ -27,11 +27,11 @@ public class JavaCalculator {
 	
 	
 	public static int precedence(char x){
-		if(x=='(' || x==')') {
-			return 2;
-		}
+		//if(x=='(' || x==')') {
+		//	return 2;
+		//}
 		
-	    else if(x=='*' || x=='/'){
+	    if(x=='*' || x=='/'){
             return 1;                        // second highest precedence
         }
         else if(x=='+' || x=='-'){
@@ -43,53 +43,51 @@ public class JavaCalculator {
     }
 
 	public static String postfixConversion(String input) {
-
-        int i;
-        String postfix = "";
+        String invalid = "";
+		String postfixExpression = "";
         Stack<Character> stack = new Stack<Character>();
-        for (i = 0; i < input.length(); i++) {
-                while (input.charAt(i) == ' ') {
-                        ++i;
+        
+        for (int i = 0; i < input.length(); i++) {
+        	while (input.charAt(i) == ' ') {
+        		++i;
+            }
+
+            if (Character.isDigit(input.charAt(i))) { 
+            	postfixExpression += input.charAt(i);
+            	
+            	if (i+1 >= input.length() || !Character.isDigit(input.charAt(i+1))) {            	
+            		postfixExpression += ' ';
+                } 
+            }
+            
+            else if (input.charAt(i) == '(') {
+                    stack.push(input.charAt(i));    
+            }
+
+            else if (precedence(input.charAt(i)) != -1) {
+                while ((!stack.isEmpty()) && (precedence(stack.peek()) >= precedence(input.charAt(i))) && (stack.peek() != '(')) {
+                	postfixExpression += stack.peek();
+                	postfixExpression += ' ';    
+                	stack.pop();
                 }
 
-                if (Character.isDigit(input.charAt(i))) { 
-                                postfix += input.charAt(i);
-                                if (i+1 >= input.length() || !Character.isDigit(input.charAt(i+1))) {
-                                       postfix += ' ';
-                                } 
-                }
+                    stack.push(input.charAt(i));
+            }
 
-                else if (precedence(input.charAt(i)) != -1) {
-                        while ((!stack.isEmpty()) && (precedence(stack.peek()) >= precedence(input.charAt(i))) && (stack.peek() != '(')) {
-                                postfix += stack.peek();
-                                postfix += ' ';
-                                stack.pop();
-                        }
-
-                        stack.push(input.charAt(i));
-                }
-
-                else if (input.charAt(i) == '(') {
-                        stack.push(input.charAt(i));
-                }
-
-                else if (input.charAt(i) == ')') {
-                        while (!stack.isEmpty() && stack.peek() != '(') {
-                                postfix += stack.peek();
-                                stack.pop();
-                        }
-
-                        stack.pop();
-                }
+            else if (input.charAt(i) == ')') {
+            	while (!stack.isEmpty() && stack.peek() != '(') {
+            		postfixExpression += stack.peek();
+            		stack.pop();
+            	}
+            	stack.pop();
+            }
         }
 
         while (!stack.isEmpty()) {
-                postfix += stack.pop();
-                postfix += ' ';
+        	postfixExpression += stack.pop();
+            postfixExpression += ' ';
         }
-
-        return postfix;
-
+        return postfixExpression;
 }
 	
 	
