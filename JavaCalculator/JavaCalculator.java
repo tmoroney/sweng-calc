@@ -5,20 +5,44 @@ public class JavaCalculator {
 	
 	public static final int TITLE_SCREEN = 0;
 	public static final int CONTINUE_SCREEN = 1;
-	public static final int EXIT_SCREEN = 2;
+	public static final int ERROR_SCREEN = 2;
+	public static final int EXIT_SCREEN = 3;
+	static Scanner input = new Scanner(System.in);
 
 	public static void main(String[] args) {
 		boolean exit = false;
 		printMenu(TITLE_SCREEN);  //Print Welcome Screen
 		while(!exit) {
-			System.out.println(postfixConversion(takeInput()));
-			exit = true;
+			exit = calculator();
 		}
-		//Exit Program
+		input.close();
+	}
+	
+	public static boolean calculator() {
+		String userInput = takeInput();
+		if (userInput.equalsIgnoreCase("exit")) return true;
+		else {
+			String postfixExpression = inputInterpret(userInput);
+			if (postfixExpression.equalsIgnoreCase("")) {
+				printMenu(ERROR_SCREEN);
+				return false;
+			}
+			else {
+		    System.out.println("for testing, postfix expression: " + postfixExpression);
+			printResult(postfixCalculator(postfixExpression));
+			printMenu(CONTINUE_SCREEN);
+			return false;
+			}
+		}
+	}
+	
+	public static int postfixCalculator(String expression) {
+		int temp = 1;
+		return temp;
 	}
 	
 	public static String takeInput() {
-		Scanner input = new Scanner(System.in);
+		//Scanner input = new Scanner(System.in);
 		String inputString = input.nextLine();
 		return inputString;
 	}
@@ -27,7 +51,7 @@ public class JavaCalculator {
 		//checks if valid input
 		//if valid, returns postfix conversion of user input
 		//if invalid, returns ""
-	public static String postfixConversion(String input) {
+	public static String inputInterpret(String input) {
         String invalidExpression = "";
 		String postfixExpression = "";
         Stack<Character> stack = new Stack<Character>();
@@ -94,6 +118,10 @@ public class JavaCalculator {
 			break;
 			
         case 2:
+        	System.out.println("Invalid, try again");
+        	break;
+			
+        case 3:
         	System.out.println("Bye forever");
 	        break;
 		}
@@ -101,6 +129,6 @@ public class JavaCalculator {
 	
 	private static void printResult(int result) {
 		String resultString = "Result: " + result;
-		System.out.print(resultString);
+		System.out.println(resultString);
 	}
 }
