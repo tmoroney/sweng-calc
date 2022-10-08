@@ -1,2 +1,2 @@
 # sweng-calc
-Simple calculator to demonstrate CI pipeline testting.
+Simple calculator to demonstrate CI pipeline testing.
