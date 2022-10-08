@@ -18,69 +18,52 @@ public class JavaCalculator {
 	}
 	
 	public static String takeInput() {
-		Scanner input = new Scanner( System.in );
-		String inputString = input.next();
+		Scanner input = new Scanner(System.in);
+		String inputString = input.nextLine();
 		return inputString;
 	}
 	
-	
-	
-	
-	public static int precedence(char x){
-		//if(x=='(' || x==')') {
-		//	return 2;
-		//}
-		
-	    if(x=='*' || x=='/'){
-            return 1;                        // second highest precedence
-        }
-        else if(x=='+' || x=='-'){
-            // lowest precedence
-
-            return 0;
-        }
-        return -1; // not an operator
-    }
-
+	//takes user input mathematical expression
+		//checks if valid input
+		//if valid, returns postfix conversion of user input
+		//if invalid, returns ""
 	public static String postfixConversion(String input) {
-        String invalid = "";
+        String invalidExpression = "";
 		String postfixExpression = "";
         Stack<Character> stack = new Stack<Character>();
+        boolean lastCharacterDigit = false;
         
         for (int i = 0; i < input.length(); i++) {
+        	
+        	//process whitespace
         	while (input.charAt(i) == ' ') {
         		++i;
             }
 
+        	//process number values
             if (Character.isDigit(input.charAt(i))) { 
-            	postfixExpression += input.charAt(i);
+            	if (lastCharacterDigit) return invalidExpression;
             	
+            	postfixExpression += input.charAt(i);
             	if (i+1 >= input.length() || !Character.isDigit(input.charAt(i+1))) {            	
             		postfixExpression += ' ';
+            		lastCharacterDigit = true;
                 } 
             }
-            
-            else if (input.charAt(i) == '(') {
-                    stack.push(input.charAt(i));    
-            }
 
+            //process operators
             else if (precedence(input.charAt(i)) != -1) {
+            	if (!lastCharacterDigit) return invalidExpression;
+            	
                 while ((!stack.isEmpty()) && (precedence(stack.peek()) >= precedence(input.charAt(i))) && (stack.peek() != '(')) {
-                	postfixExpression += stack.peek();
-                	postfixExpression += ' ';    
-                	stack.pop();
+                	postfixExpression += stack.pop();
+                	postfixExpression += ' ';
                 }
-
-                    stack.push(input.charAt(i));
+                stack.push(input.charAt(i));
+                lastCharacterDigit = false;
             }
-
-            else if (input.charAt(i) == ')') {
-            	while (!stack.isEmpty() && stack.peek() != '(') {
-            		postfixExpression += stack.peek();
-            		stack.pop();
-            	}
-            	stack.pop();
-            }
+            
+            else return invalidExpression;
         }
 
         while (!stack.isEmpty()) {
@@ -90,17 +73,16 @@ public class JavaCalculator {
         return postfixExpression;
 }
 	
+	public static int precedence(char operator){
+	    if(operator == '*' || operator == '/'){ //higher precedence
+            return 1;
+        }
+        else if(operator == '+' || operator == '-'){  // lower precedence
+            return 0;
+        }
+        return -1; // not an operator
+    }
 	
-	
-	//takes user input mathematical expression
-	//checks if valid input
-	//if valid, returns postfix conversion of user input
-	//if invalid, returns ""
-	//private static String interpretString(String userInputString) {
-	//	String invalidExpression, postfixConversion = "";
-	//	
-	//}
-
 	private static void printMenu(int option) {
 		switch(option) {
 		case 0:
