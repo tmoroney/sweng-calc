@@ -36,8 +36,38 @@ public class calculator {
     }
 
     public static int postfixCalculator(String expression) {
-        int temp = 1;
-        return temp;
+        Stack<Integer> stack = new Stack<Integer>();
+        int x = 0;
+        for (int i = 0; i < expression.length(); i++) {
+
+            //process whitespace
+            //while (expression.charAt(i) == ' ') {
+            //    x = 0;
+            //    ++i;
+            //}
+
+            if (Character.isDigit(expression.charAt(i))){
+                x += Character.getNumericValue(expression.charAt(i));
+                if(Character.isDigit(expression.charAt(i+1)))
+                    x = x*10;
+                else {
+                    stack.push(x);
+                    x = 0;
+                }
+            }
+            else if(precedence(expression.charAt(i)) != -1){
+                int oprand2 = stack.pop();
+                int oprand1 = stack.pop();
+                int result = 0;
+
+                if(expression.charAt(i) == '*') result = oprand1 * oprand2;
+                else if (expression.charAt(i) == '+') result = oprand1 + oprand2;
+                else if (expression.charAt(i) == '-') result = oprand1 - oprand2;
+
+                stack.push(result);
+            }
+        }
+        return stack.pop();
     }
 
     public static String takeInput() {
