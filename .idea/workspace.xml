@@ -43,7 +43,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
   </component>
-  <component name="RunManager" selected="JUnit.calculatorTest.testPostfix">
+  <component name="RunManager" selected="JUnit.calculatorTest">
     <configuration name="calculator" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="calculator" />
       <module name="sweng-calc" />
@@ -82,9 +82,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.calculatorTest" />
         <item itemvalue="JUnit.calculatorTest.testPostfix" />
         <item itemvalue="Application.calculator" />
-        <item itemvalue="JUnit.calculatorTest" />
         <item itemvalue="JUnit.calculatorTest.testCalc" />
       </list>
     </recent_temporary>
