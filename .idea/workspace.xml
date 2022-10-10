@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="c948032d-f0e3-43a6-a8e5-3865e17d13b7" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/calculatorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/calculatorTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,11 +70,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="calculatorTest.testPostfix" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="sweng-calc" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="calculatorTest" />
+      <option name="METHOD_NAME" value="testPostfix" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.calculatorTest" />
-        <item itemvalue="JUnit.calculatorTest.testCalc" />
+        <item itemvalue="JUnit.calculatorTest.testPostfix" />
         <item itemvalue="Application.calculator" />
+        <item itemvalue="JUnit.calculatorTest.testCalc" />
       </list>
     </recent_temporary>
   </component>
@@ -87,6 +99,7 @@
       <updated>1665326725906</updated>
       <workItem from="1665326728955" duration="4344000" />
       <workItem from="1665360852548" duration="3712000" />
+      <workItem from="1665429523514" duration="3624000" />
     </task>
     <servers />
   </component>
@@ -104,5 +117,9 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/sweng_calc$calculatorTest.ic" NAME="calculatorTest Coverage Results" MODIFIED="1665431233502" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/sweng_calc$calculatorTest_testPostfix.ic" NAME="calculatorTest.testPostfix Coverage Results" MODIFIED="1665430811369" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>
