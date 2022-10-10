@@ -21,13 +21,14 @@ public class calculator {
             if(userInput.equalsIgnoreCase("exit")) exit = true;                                    //Check if user chose to exit
             else infixCalculator(userInput);
         }
+        printMenu(EXIT_SCREEN);
         input.close();                                                                             //Close Scanner object
     }
 
     public static int infixCalculator(String input){
         String postfixExpression = inputInterpret(input);                              //Validate input expression, convert to postfix if valid, print error if not
         if (!postfixExpression.equalsIgnoreCase("")) {                                     //If valid input, calculate result of expression, if invalid return to Instruction & Input screen
-            System.out.println("for testing, postfix expression: " + postfixExpression);   //testing line
+            //System.out.println("for testing, postfix expression: " + postfixExpression);   //testing line
             int result = postfixCalculator(postfixExpression);                               //Print Result of calculation, evaluatePostFix() returns an integer.
             printResult(result);
             return result;
@@ -164,7 +165,16 @@ public class calculator {
     private static void printMenu(int option) {
         switch(option) {
             case 0:
-                System.out.println("Hello welcome to the best calculator in this room");
+                System.out.println("\r\n" +
+                        "   _____      _            _       _               _______ _                \r\n" +
+                        "  / ____|    | |          | |     | |             |__   __(_)               \r\n" +
+                        " | |     __ _| | ___ _   _| | __ _| |_ ___  _ __     | |   _ _ __ ___   ___ \r\n" +
+                        " | |    / _` | |/ __| | | | |/ _` | __/ _ \\| '__|    | |  | | '_ ` _ \\ / _ \\\r\n" +
+                        " | |___| (_| | | (__| |_| | | (_| | || (_) | |       | |  | | | | | | |  __/\r\n" +
+                        "  \\_____\\__,_|_|\\___|\\__,_|_|\\__,_|\\__\\___/|_|       |_|  |_|_| |_| |_|\\___|\r\n" +
+                        "                                                                            \r\n" +
+                        "                                                                            \r\n" +
+                        "");
                 break;
 
             case 1:
@@ -172,19 +182,19 @@ public class calculator {
                 break;
 
             case 2:
-                System.out.println("invalid character, only numerics and +, -, * please thanks");
+                System.out.println("ERROR: Invalid character, only enter numerics and mathematical operators: (+, -, *) \r\n");
                 break;
 
             case 3:
-                System.out.println("two operators no number inbetween");
+                System.out.println("ERROR: Two operators with no numeric value inbetween \r\n");
                 break;
 
             case 4:
-                System.out.println("two numbers no operator inbetween");
+                System.out.println("ERROR: Two numeric values with no operator inbetween \r\n");
                 break;
 
             case 5:
-                System.out.println("Can't end expression with an operator");
+                System.out.println("ERROR: Can't end expression with an operator \r\n");
                 break;
 
             case 6:
@@ -197,7 +207,7 @@ public class calculator {
     //takes integer result from calculations and prints it to screen with message
     //return type void
     private static void printResult(int result) {
-        String resultString = "Result: " + result;
+        String resultString = "Result: " + result + "\r\n";
         System.out.println(resultString);
     }
 }
