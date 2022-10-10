@@ -27,8 +27,8 @@ public class calculatorTest {
         assertEquals(142, calc.postfixCalculator("123 19 +"));
         assertEquals(-3, calc.postfixCalculator("-5 2 +"));
         assertEquals(-3, calc.postfixCalculator("2 -5 +"));
-        //assertEquals(2, calc.postfixCalculator("5 3 -"));
-        //assertEquals(13, calc.postfixCalculator("8 -5 -"));
+        assertEquals(2, calc.postfixCalculator("5 3 -"));
+        assertEquals(13, calc.postfixCalculator("8 -5 -"));
         assertEquals(-30, calc.postfixCalculator("-15 2 *"));
         assertEquals(-60, calc.postfixCalculator("3 -20 *"));
     }

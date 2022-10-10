@@ -51,7 +51,7 @@ public class calculator {
                 else
                     x += Character.getNumericValue(expression.charAt(i));
 
-                if(Character.isDigit(expression.charAt(i+1)))
+                if((i+1) < input.length() && Character.isDigit(expression.charAt(i+1)))
                     x = x*10;
                 else {
                     stack.push(x);
@@ -59,7 +59,7 @@ public class calculator {
                     isNegative = false;
                 }
             }
-            else if(expression.charAt(i) == '-' && Character.isDigit(expression.charAt(i+1)))
+            else if((i+1) < input.length() && expression.charAt(i) == '-' && Character.isDigit(expression.charAt(i+1)))
                 isNegative = true;
 
             else if(checkPrecedence(expression.charAt(i)) != -1){
