@@ -42,17 +42,25 @@ public class calculator {
     public static int postfixCalculator(String expression) {
         Stack<Integer> stack = new Stack<Integer>();
         int x = 0;
+        boolean isNegative = false;
         for (int i = 0; i < expression.length(); i++) {
-
             if (Character.isDigit(expression.charAt(i))){
-                x += Character.getNumericValue(expression.charAt(i));
+                if(isNegative)
+                    x -= Character.getNumericValue(expression.charAt(i));
+                else
+                    x += Character.getNumericValue(expression.charAt(i));
+
                 if(Character.isDigit(expression.charAt(i+1)))
                     x = x*10;
                 else {
                     stack.push(x);
                     x = 0;
+                    isNegative = false;
                 }
             }
+            else if(expression.charAt(i) == '-' && Character.isDigit(expression.charAt(i+1)))
+                isNegative = true;
+
             else if(checkPrecedence(expression.charAt(i)) != -1){
                 int oprand2 = stack.pop();
                 int oprand1 = stack.pop();
@@ -97,6 +105,10 @@ public class calculator {
                     postfixExpression += ' ';
                     lastCharacterDigit = true;
                 }
+            }
+
+            else if (!lastCharacterDigit && input.charAt(i) == '-' && Character.isDigit(input.charAt(i+1))) {
+                postfixExpression += input.charAt(i);
             }
 
             //process operators
