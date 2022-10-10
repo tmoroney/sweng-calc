@@ -12,7 +12,10 @@ public class calculatorTest {
         assertEquals(142, calc.infixCalculator("123 + 19"));
         assertEquals(-3, calc.infixCalculator("-5 + 2"));
         assertEquals(-3, calc.infixCalculator("2 + -5"));
+        assertEquals(2, calc.infixCalculator("5 - 3"));
+        assertEquals(13, calc.infixCalculator("8 - -5"));
         assertEquals(-30, calc.infixCalculator("-15 * 2"));
+        assertEquals(-60, calc.infixCalculator("3 * -20"));
     }
 
     @Test
@@ -24,7 +27,10 @@ public class calculatorTest {
         assertEquals(142, calc.postfixCalculator("123 19 +"));
         assertEquals(-3, calc.infixCalculator("-5 2 +"));
         assertEquals(-3, calc.infixCalculator("2 -5 +"));
+        assertEquals(2, calc.infixCalculator("5 3 -"));
+        assertEquals(13, calc.infixCalculator("8 -5 -"));
         assertEquals(-30, calc.infixCalculator("-15 2 *"));
+        assertEquals(-60, calc.infixCalculator("3 * -20"));
     }
 
 }
