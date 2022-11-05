@@ -25,11 +25,13 @@ public class calculator {
         input.close();                                                                             //Close Scanner object
     }
 
-    public static int infixCalculator(String input){
+    public static double infixCalculator(String input){
         String postfixExpression = inputInterpret(input);                              //Validate input expression, convert to postfix if valid, print error if not
         if (!postfixExpression.equalsIgnoreCase("")) {                                     //If valid input, calculate result of expression, if invalid return to Instruction & Input screen
             //System.out.println("for testing, postfix expression: " + postfixExpression);   //testing line
-            int result = postfixCalculator(postfixExpression);                               //Print Result of calculation, evaluatePostFix() returns an integer.
+            double result = postfixCalculator(postfixExpression);
+            double scale = Math.pow(10, 3);  // round to 3 decimal places
+            result = Math.round(result * scale) / scale;                                //Print Result of calculation, evaluatePostFix() returns an integer.
             printResult(result);
             return result;
         }
@@ -40,34 +42,48 @@ public class calculator {
 
     //Takes integer postfix expression String (Whitespace separating each value and operator e.g. "5 10 6 * +")
     //Evaluates and returns the resulting integer
-    public static int postfixCalculator(String expression) {
-        Stack<Integer> stack = new Stack<Integer>();
-        int x = 0;
+    public static double postfixCalculator(String expression) {
+        Stack<Double> stack = new Stack<Double>();
+        double x = 0;
         boolean isNegative = false;
+        int pastFloatingPoint = 0;
         for (int i = 0; i < expression.length(); i++) {
-            if (Character.isDigit(expression.charAt(i))){
-                if(isNegative)
+            if (Character.isDigit(expression.charAt(i))) {
+                if (pastFloatingPoint > 0) {
+                    double temp = (double) Character.getNumericValue(expression.charAt(i)) / (Math.pow(10,pastFloatingPoint));
+                    x = x + temp;
+                    pastFloatingPoint++;
+                }
+                else if(isNegative)
                     x -= Character.getNumericValue(expression.charAt(i));
                 else
                     x += Character.getNumericValue(expression.charAt(i));
 
-                if((i+1) < expression.length() && Character.isDigit(expression.charAt(i+1)))
+                if((i+1) < expression.length() && Character.isDigit(expression.charAt(i+1)) && pastFloatingPoint == 0) {
                     x = x*10;
-                else {
+                }
+
+                if((i+1) >= expression.length() || (!Character.isDigit(expression.charAt(i+1)) && expression.charAt(i+1) != '.')) {
                     stack.push(x);
                     x = 0;
                     isNegative = false;
+                    pastFloatingPoint = 0;
                 }
+            }
+            else if (expression.charAt(i) == '.') {
+                pastFloatingPoint++;
             }
             else if((i+1) < expression.length() && expression.charAt(i) == '-' && Character.isDigit(expression.charAt(i+1)))
                 isNegative = true;
 
             else if(checkPrecedence(expression.charAt(i)) != -1){
-                int oprand2 = stack.pop();
-                int oprand1 = stack.pop();
-                int result = 0;
+                double oprand2 = (double) stack.pop();
+                double oprand1 = (double) stack.pop();
+                double result = 0;
 
-                if(expression.charAt(i) == '*') result = oprand1 * oprand2;
+                if (expression.charAt(i) == '^') result = Math.pow(oprand1, oprand2);
+                else if(expression.charAt(i) == '*') result = oprand1 * oprand2;
+                else if (expression.charAt(i) == '/') result = oprand1 / oprand2;
                 else if (expression.charAt(i) == '+') result = oprand1 + oprand2;
                 else if (expression.charAt(i) == '-') result = oprand1 - oprand2;
 
@@ -95,14 +111,14 @@ public class calculator {
             }
 
             //process number values
-            if (Character.isDigit(input.charAt(i))) {                                         //Check if character at position i is a numeric value
+            if (Character.isDigit(input.charAt(i)) || input.charAt(i) == '.') {                                         //Check if character at position i is a numeric value
                 if (lastCharacterDigit) {
                     printMenu(ERROR_DOUBLE_NUMBER);                                           //If the character is a numeric value, and the last element of the user input processed was also a numeric value,
                     return invalidExpression;                                                 //An error message is printed and the string is said to be invalid, as there were two numbers after one another with no operator in between.
                 }
 
                 postfixExpression += input.charAt(i);
-                if (i+1 >= input.length() || !Character.isDigit(input.charAt(i+1))) {
+                if (i+1 >= input.length() || (!Character.isDigit(input.charAt(i+1)) && input.charAt(i+1) != '.')) {
                     postfixExpression += ' ';
                     lastCharacterDigit = true;
                 }
@@ -151,7 +167,10 @@ public class calculator {
     //returns an integer relating to its precedence level
     //returns -1 if not a valid operator
     public static int checkPrecedence(char operator){
-        if(operator == '*'){ //higher precedence
+        if(operator == '^'){  // lowest precedence
+            return 2;
+        }
+        else if(operator == '*' || operator == '/'){ //higher precedence
             return 1;
         }
         else if(operator == '+' || operator == '-'){  // lower precedence
@@ -182,7 +201,7 @@ public class calculator {
                 break;
 
             case 2:
-                System.out.println("ERROR: Invalid character, only enter numerics and mathematical operators: (+, -, *) \r\n");
+                System.out.println("ERROR: Invalid character, only enter numerics and mathematical operators: (+, -, *, /) \r\n");
                 break;
 
             case 3:
@@ -206,7 +225,7 @@ public class calculator {
 
     //takes integer result from calculations and prints it to screen with message
     //return type void
-    private static void printResult(int result) {
+    private static void printResult(double result) {
         String resultString = "Result: " + result + "\r\n";
         System.out.println(resultString);
     }
