@@ -1,2 +1,8 @@
 # sweng-calc
-Simple calculator to demonstrate CI pipeline testing.
+Java Calculator to demonstrate CI pipeline testing.
+
+Supports:
+- multiplication, division, addition, subtraction
+- brackets in equations
+- floating point numbers
+- log and exp functions
