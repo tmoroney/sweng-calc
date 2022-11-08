@@ -7,6 +7,7 @@
     <list default="true" id="c948032d-f0e3-43a6-a8e5-3865e17d13b7" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/calculator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/calculator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/calculator.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/calculator.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -119,6 +120,10 @@
       <workItem from="1667655005730" duration="3539000" />
       <workItem from="1667658838509" duration="8275000" />
       <workItem from="1667741657084" duration="9779000" />
+      <workItem from="1667771998297" duration="12970000" />
+      <workItem from="1667855658764" duration="1847000" />
+      <workItem from="1667862563945" duration="11000" />
+      <workItem from="1667868017689" duration="319000" />
     </task>
     <servers />
   </component>
@@ -136,22 +141,6 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/calculator.java</url>
-          <line>145</line>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/calculator.java</url>
-          <line>120</line>
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/sweng_calc$calculatorTest.ic" NAME="calculatorTest Coverage Results" MODIFIED="1665434703060" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
