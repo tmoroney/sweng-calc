@@ -7,7 +7,6 @@
     <list default="true" id="c948032d-f0e3-43a6-a8e5-3865e17d13b7" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/calculator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/calculator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/calculator.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/calculator.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,6 +43,9 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../calcWebApp" />
+    <property name="project.structure.last.edited" value="SDKs" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.0" />
   </component>
   <component name="RunManager" selected="Application.calculator">
     <configuration name="calculator" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -123,7 +125,9 @@
       <workItem from="1667771998297" duration="12970000" />
       <workItem from="1667855658764" duration="1847000" />
       <workItem from="1667862563945" duration="11000" />
-      <workItem from="1667868017689" duration="319000" />
+      <workItem from="1667868017689" duration="2034000" />
+      <workItem from="1667875267378" duration="24000" />
+      <workItem from="1667933973822" duration="292000" />
     </task>
     <servers />
   </component>
